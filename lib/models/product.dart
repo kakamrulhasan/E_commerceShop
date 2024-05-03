@@ -3,8 +3,8 @@ class Product {
   final String name, category, image, description;
   final double price;
   int quantity;
-  
-  Product ({
+
+  Product({
     required this.id,
     required this.name,
     required this.category,
@@ -12,5 +12,5 @@ class Product {
     required this.description,
     required this.image,
     required this.quantity,
-  })
+  });
 }

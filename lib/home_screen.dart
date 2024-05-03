@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -33,28 +32,38 @@ class _HomeScreenState extends State<HomeScreen> {
               _buildProductCategory(index: 2, name: 'Sneakers'),
             ],
           ),
-          const SizedBox(height: 20, ),
-          Expanded(child: _buildAllProduct())
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: isSelected == 0 ? _buildAllProduct():isSelected== 1? _buildJackets():_buildSneakers(),
+            ),
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
       ),
     );
-    
-  } 
+  }
 
   _buildProductCategory({required int index, required String name}) =>
-      Container(
-        width: 100,
-        height: 40,
-        margin: const EdgeInsets.only(top: 10, right: 10),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: isSelected == index ? Colors.red : Colors.red.shade300,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Text(
-          name,
-          style: TextStyle(color: Colors.white),
+      GestureDetector(
+        onTap: () {
+          setState(() {
+            isSelected = index;
+          });
+        },
+        child: Container(
+          width: 100,
+          height: 40,
+          margin: const EdgeInsets.only(top: 10, right: 10),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: isSelected == index ? Colors.red : Colors.red.shade300,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(
+            name,
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       );
 
@@ -70,5 +79,28 @@ class _HomeScreenState extends State<HomeScreen> {
       itemBuilder: (context, index) {
         final allProduct = Myproduct.AllProducts[index];
         return ProductCard(product: allProduct);
+      });
+
+  _buildJackets() => GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: (100 / 140),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+      ),
+      itemBuilder: (context, index) {
+        final jacketsList = Myproduct.jacketsList[index];
+        return ProductCard(product: jacketsList);
+      });
+      _buildSneakers() => GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: (100 / 140),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+      ),
+      itemBuilder: (context, index) {
+        final sneakersList = Myproduct.sneakersList[index];
+        return ProductCard(product: sneakersList);
       });
 }

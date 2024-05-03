@@ -1,7 +1,7 @@
 import 'package:flutter_application_19/models/product.dart';
 
 class Myproduct {
-  static List<Product> allProducts = [
+  static List<Product> AllProducts = [
     Product(
         id: 1,
         name: 'Nike Air Max 200',

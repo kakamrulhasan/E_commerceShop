@@ -1,8 +1,9 @@
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_19/models/my_product.dart';
-import 'package:flutter_application_19/models/product.dart';
+import 'package:flutter_application_19/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -31,12 +32,15 @@ class _HomeScreenState extends State<HomeScreen> {
               _buildProductCategory(index: 1, name: 'jackets'),
               _buildProductCategory(index: 2, name: 'Sneakers'),
             ],
-          )
+          ),
+          const SizedBox(height: 20, ),
+          Expanded(child: _buildAllProduct())
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
       ),
     );
-  }
+    
+  } 
 
   _buildProductCategory({required int index, required String name}) =>
       Container(
@@ -64,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
       scrollDirection: Axis.vertical,
       itemCount: Myproduct.AllProducts.length,
       itemBuilder: (context, index) {
-        return ProductCard();
+        final allProduct = Myproduct.AllProducts[index];
+        return ProductCard(product: allProduct);
       });
 }

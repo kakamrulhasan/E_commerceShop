@@ -22,7 +22,7 @@ class Myproduct {
   ];
   static List<Product> jacketsList = [
     Product(
-        id: 1,
+        id: 0,
         name: 'Nike Air Max 200',
         category: 'Trending Now',
         price: 180,

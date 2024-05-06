@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_19/details__screen.dart';
 import 'package:flutter_application_19/models/my_product.dart';
 import 'package:flutter_application_19/product_card.dart';
 
@@ -36,8 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 20,
           ),
           Expanded(
-            child: isSelected == 0 ? _buildAllProduct():isSelected== 1? _buildJackets():_buildSneakers(),
-            ),
+            child: isSelected == 0
+                ? _buildAllProduct()
+                : isSelected == 1
+                    ? _buildJackets()
+                    : _buildSneakers(),
+          ),
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
       ),
@@ -78,7 +83,17 @@ class _HomeScreenState extends State<HomeScreen> {
       itemCount: Myproduct.AllProducts.length,
       itemBuilder: (context, index) {
         final allProduct = Myproduct.AllProducts[index];
-        return ProductCard(product: allProduct);
+
+        return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailScreen(
+                            product: allProduct,
+                          )));
+            },
+            child: ProductCard(product: allProduct));
       });
 
   _buildJackets() => GridView.builder(
@@ -90,9 +105,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       itemBuilder: (context, index) {
         final jacketsList = Myproduct.jacketsList[index];
-        return ProductCard(product: jacketsList);
+        return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DetailScreen(product: jacketsList)));
+            },
+            child: ProductCard(product: jacketsList));
       });
-      _buildSneakers() => GridView.builder(
+  _buildSneakers() => GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: (100 / 140),
@@ -101,6 +124,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       itemBuilder: (context, index) {
         final sneakersList = Myproduct.sneakersList[index];
-        return ProductCard(product: sneakersList);
+        return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DetailScreen(product: sneakersList)));
+            },
+            child: ProductCard(product: sneakersList));
       });
 }

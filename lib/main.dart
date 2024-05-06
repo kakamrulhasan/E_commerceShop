@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_19/card_details.dart';
 
 import 'favourite_screen.dart';
 import 'home_screen.dart';
@@ -17,7 +18,7 @@ class _MainAppState extends State<MainApp> {
   int currentIndex = 0;
 
   List screens = [
-     HomeScreen(),
+    HomeScreen(),
     const FavouriteScreen(),
     const ProfileScreen(),
   ];
@@ -33,6 +34,19 @@ class _MainAppState extends State<MainApp> {
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
           centerTitle: true,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CardDetails()));
+                },
+                icon: const Icon(Icons.add_shopping_cart,
+                color: Colors.white,),
+                
+                )
+          ],
           backgroundColor: Colors.red[900],
         ),
         body: screens[currentIndex],

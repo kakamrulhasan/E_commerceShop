@@ -10,6 +10,18 @@ class CardDetails extends StatefulWidget {
 class _CardDetailsState extends State<CardDetails> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('My Cart'),
+        centerTitle: true,
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.red.shade100,
+        ),
+       
+      ),
+    );
   }
 }

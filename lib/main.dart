@@ -22,10 +22,13 @@ class _MainAppState extends State<MainApp> {
     const FavouriteScreen(),
     const ProfileScreen(),
   ];
+  
+  
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context)=> MaterialApp(
+    
+    
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
@@ -40,7 +43,7 @@ class _MainAppState extends State<MainApp> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const CardDetails()));
+                          builder: (context) =>  CardDetails()));
                 },
                 icon: const Icon(Icons.add_shopping_cart,
                 color: Colors.white,),
@@ -49,7 +52,9 @@ class _MainAppState extends State<MainApp> {
           ],
           backgroundColor: Colors.red[900],
         ),
+        
         body: screens[currentIndex],
+        
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: currentIndex,
             selectedItemColor: Colors.red[900],
@@ -70,5 +75,4 @@ class _MainAppState extends State<MainApp> {
             ]),
       ),
     );
-  }
 }
